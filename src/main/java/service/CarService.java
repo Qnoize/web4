@@ -1,7 +1,14 @@
 package service;
 
+import DAO.CarDao;
+import model.Car;
 import org.hibernate.SessionFactory;
 import util.DBHelper;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 public class CarService {
 
@@ -20,9 +27,38 @@ public class CarService {
         return carService;
     }
 
+    public List<Car> getAllCars() {
+        List<Car> list = null;
+        CarDao dao = new CarDao( sessionFactory.openSession());
+        return list = dao.getAllCars();
+    }
 
-    public Object getAllCars() {
-        // заглушка
-        return getAllCars();
+    public int getNumberBrand(String brand) {
+        List<Car> list = null;
+        int number = 0;
+        CarDao dao = new CarDao( sessionFactory.openSession());
+        list = dao.getCarByBrand(brand);
+        if (list != null) {
+            number = list.size();
+        }
+        return number;
+    }
+
+    public void addCar(Car car) {
+        CarDao dao = new CarDao(sessionFactory.openSession());
+        dao.addCar(car);
+    }
+
+    public Car getCarByParameters(String brand, String model, String number) {
+        CarDao dao = new CarDao(sessionFactory.openSession());
+        return dao.getCarByParameters(brand, model, number);
+    }
+
+    public void deleteCar(Car car) {
+        new CarDao(sessionFactory.openSession()).deleteCar(car);
+    }
+
+    public void deleteAllCar() {
+        new CarDao(sessionFactory.openSession()).deleteAllCars();
     }
 }
