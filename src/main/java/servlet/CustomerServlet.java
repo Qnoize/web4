@@ -1,10 +1,8 @@
 package servlet;
-
 import com.google.gson.Gson;
 import model.Car;
 import service.CarService;
 import service.DailyReportService;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

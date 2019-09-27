@@ -1,10 +1,8 @@
 package DAO;
-
 import model.Car;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
-
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -38,10 +36,10 @@ public class CarDao {
         Root<Car> carRoot = criteriaQuery.from(Car.class);
         criteriaQuery.select(carRoot).where(criteriaBuilder.equal(carRoot.get("brand"),brand));
         Query<Car> query= session.createQuery(criteriaQuery);
-        List<Car> results = query.getResultList();
+        List<Car> list = query.getResultList();
         session.getTransaction().commit();
         session.close();
-        return results;
+        return list;
     }
 
     public void addCar(Car car) {

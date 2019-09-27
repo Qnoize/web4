@@ -1,28 +1,24 @@
 package DAO;
-
 import model.Car;
 import model.DailyReport;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import util.DayReportBuffer;
-
 import java.util.List;
 
 public class DailyReportDao {
-
     private Session session;
-
     public DailyReportDao(Session session) {
         this.session = session;
     }
 
     public List<DailyReport> getAllDailyReport() {
         Transaction transaction = session.beginTransaction();
-        List<DailyReport> reportBuffers = session.createQuery("FROM DailyReport").list();
+        List<DailyReport> list = session.createQuery("FROM DailyReport").list();
         transaction.commit();
         session.close();
-        return reportBuffers;
+        return list;
     }
 
     public void addingSoldCar(Car car) {
@@ -34,14 +30,13 @@ public class DailyReportDao {
     }
 
     public DailyReport getLastReport() {
-
         session.beginTransaction();
         Query query = session.createQuery("from DailyReport order by id desc");
         query.setMaxResults(1);
-        DailyReport last = (DailyReport) query.uniqueResult();
+        DailyReport dailyReport = (DailyReport) query.uniqueResult();
         session.getTransaction().commit();
         session.close();
-        return last;
+        return dailyReport;
     }
 
     public void deleteAllReport() {
@@ -53,9 +48,9 @@ public class DailyReportDao {
 
     public void createNewDayReport() {
         DayReportBuffer dayReportBuffer = DayReportBuffer.getInstance();
-        DailyReport report = new DailyReport(dayReportBuffer.getEarnings(), dayReportBuffer.getSoldCars());
+        DailyReport dailyReport = new DailyReport(dayReportBuffer.getEarnings(), dayReportBuffer.getSoldCars());
         session.beginTransaction();
-        session.save(report);
+        session.save(dailyReport);
         session.getTransaction().commit();
         session.close();
     }

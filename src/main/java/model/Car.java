@@ -1,7 +1,5 @@
 package model;
-
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
 @Table(name = "cars")
@@ -24,9 +22,7 @@ public class Car {
     @Column(name = "price")
     private Long price;
 
-    public Car() {
-
-    }
+    public Car() {}
 
     public Car(String brand, String model, String licensePlate, Long price) {
         this.brand = brand;
@@ -84,21 +80,5 @@ public class Car {
                 ", licensePlate='" + licensePlate + '\'' +
                 ", price=" + price +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Car)) return false;
-        Car car = (Car) o;
-        return Objects.equals(brand, car.brand) &&
-                Objects.equals(model, car.model) &&
-                Objects.equals(licensePlate, car.licensePlate) &&
-                price.equals(car.price);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(brand, model, licensePlate, price);
     }
 }

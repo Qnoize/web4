@@ -2,7 +2,6 @@ package util;
 
 public class DayReportBuffer {
     private static Long earnings;
-
     private static Long soldCars ;
 
     private DayReportBuffer(Long earnings, Long soldCars) {
@@ -18,21 +17,13 @@ public class DayReportBuffer {
         return new DayReportBuffer(earnings, soldCars);
     }
 
-    public Long getEarnings() {
-        return earnings;
-    }
+    public Long getEarnings() { return earnings; }
 
-    public void setEarnings(Long earnings) {
-        this.earnings = earnings;
-    }
+    public void setEarnings(Long earnings) { this.earnings = earnings; }
 
-    public Long getSoldCars() {
-        return soldCars;
-    }
+    public Long getSoldCars() { return soldCars; }
 
-    public void setSoldCars(Long soldCars) {
-        this.soldCars = soldCars;
-    }
+    public void setSoldCars(Long soldCars) { this.soldCars = soldCars; }
 
     public void reset() {
         earnings = 0L;

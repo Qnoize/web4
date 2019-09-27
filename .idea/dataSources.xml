@@ -16,5 +16,15 @@
         <property name="serverTimezone" value="UTC" />
       </driver-properties>
     </data-source>
+    <data-source source="LOCAL" name="COLIBRI/Hibernate" uuid="3cd1998f-41c8-4ac3-ab1b-2347eed8baa8">
+      <driver-ref>mysql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate
+
+/Users/alekseydanilov/Downloads/web4/src/main/resources/META-INF/persistence.xml</remarks>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/db_example</jdbc-url>
+    </data-source>
   </component>
 </project>

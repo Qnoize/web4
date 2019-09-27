@@ -1,22 +1,16 @@
 package service;
-
 import DAO.DailyReportDao;
 import model.Car;
 import model.DailyReport;
 import org.hibernate.SessionFactory;
 import util.DBHelper;
 import util.DayReportBuffer;
-
 import java.util.List;
 
 public class DailyReportService {
     private static DailyReportService dailyReportService;
-
     private SessionFactory sessionFactory;
-
-    private DailyReportService(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
+    private DailyReportService(SessionFactory sessionFactory) { this.sessionFactory = sessionFactory; }
 
     public static DailyReportService getInstance() {
         if (dailyReportService == null) {
@@ -25,14 +19,9 @@ public class DailyReportService {
         return dailyReportService;
     }
 
-    public List<DailyReport> getAllDailyReports() {
-        return new DailyReportDao(sessionFactory.openSession()).getAllDailyReport();
-    }
+    public List<DailyReport> getAllDailyReports() { return new DailyReportDao(sessionFactory.openSession()).getAllDailyReport(); }
 
-
-    public DailyReport getLastReport() {
-        return new DailyReportDao(sessionFactory.openSession()).getLastReport();
-    }
+    public DailyReport getLastReport() { return new DailyReportDao(sessionFactory.openSession()).getLastReport(); }
 
     public void addingSoldCar(Car car) {
         new DailyReportDao(sessionFactory.openSession()).addingSoldCar(car);

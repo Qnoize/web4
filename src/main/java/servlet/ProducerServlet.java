@@ -1,8 +1,6 @@
 package servlet;
-
 import model.Car;
 import service.CarService;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

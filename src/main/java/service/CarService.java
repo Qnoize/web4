@@ -1,21 +1,13 @@
 package service;
-
 import DAO.CarDao;
 import model.Car;
 import org.hibernate.SessionFactory;
 import util.DBHelper;
-
-import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class CarService {
-
     private static CarService carService;
-
     private SessionFactory sessionFactory;
-
     private CarService(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
@@ -28,16 +20,16 @@ public class CarService {
     }
 
     public List<Car> getAllCars() {
-        List<Car> list = null;
-        CarDao dao = new CarDao( sessionFactory.openSession());
-        return list = dao.getAllCars();
+        List<Car> list;
+        CarDao carDao = new CarDao( sessionFactory.openSession());
+        return list = carDao.getAllCars();
     }
 
     public int getNumberBrand(String brand) {
-        List<Car> list = null;
+        List<Car> list;
         int number = 0;
-        CarDao dao = new CarDao( sessionFactory.openSession());
-        list = dao.getCarByBrand(brand);
+        CarDao carDao = new CarDao( sessionFactory.openSession());
+        list = carDao.getCarByBrand(brand);
         if (list != null) {
             number = list.size();
         }
@@ -45,13 +37,13 @@ public class CarService {
     }
 
     public void addCar(Car car) {
-        CarDao dao = new CarDao(sessionFactory.openSession());
-        dao.addCar(car);
+        CarDao carDao = new CarDao(sessionFactory.openSession());
+        carDao.addCar(car);
     }
 
     public Car getCarByParameters(String brand, String model, String number) {
-        CarDao dao = new CarDao(sessionFactory.openSession());
-        return dao.getCarByParameters(brand, model, number);
+        CarDao carDao = new CarDao(sessionFactory.openSession());
+        return carDao.getCarByParameters(brand, model, number);
     }
 
     public void deleteCar(Car car) {
