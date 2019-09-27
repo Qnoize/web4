@@ -21,12 +21,12 @@ public class DailyReportDao {
         return list;
     }
 
-    public void addingSoldCar(Car car) {
+    public void addSoldCar(Car car) {
         DayReportBuffer dayReportBuffer = DayReportBuffer.getInstance();
-        Long balanseEarnings = dayReportBuffer.getEarnings() + car.getPrice();
-        Long balanseSoldCars = dayReportBuffer.getSoldCars() + 1;
-        dayReportBuffer.setEarnings(balanseEarnings);
-        dayReportBuffer.setSoldCars(balanseSoldCars);
+        Long balanсeEarnings = dayReportBuffer.getEarnings() + car.getPrice();
+        Long balanсeSoldCars = dayReportBuffer.getSoldCars() + 1;
+        dayReportBuffer.setEarnings(balanсeEarnings);
+        dayReportBuffer.setSoldCars(balanсeSoldCars);
     }
 
     public DailyReport getLastReport() {

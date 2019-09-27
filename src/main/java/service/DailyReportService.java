@@ -23,8 +23,8 @@ public class DailyReportService {
 
     public DailyReport getLastReport() { return new DailyReportDao(sessionFactory.openSession()).getLastReport(); }
 
-    public void addingSoldCar(Car car) {
-        new DailyReportDao(sessionFactory.openSession()).addingSoldCar(car);
+    public void addSoldCar(Car car) {
+        new DailyReportDao(sessionFactory.openSession()).addSoldCar(car);
     }
 
     public void deleteAllReports() {
