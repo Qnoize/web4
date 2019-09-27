@@ -18,7 +18,7 @@ public class ProducerServlet extends HttpServlet {
         String model = req.getParameter("model");
         String licensePlate = req.getParameter("licensePlate");
         String priceIn = req.getParameter("price");
-        if (!brand.equals("")&& !model.equals("") && !licensePlate.equals("") && !priceIn.equals("")){
+        if (!brand.equals("") && !model.equals("") && !licensePlate.equals("") && !priceIn.equals("")){
             Long price = Long.parseLong(priceIn);
             if(CarService.getInstance().getNumberBrand(brand) < 10) {
                 Car car = new Car(brand, model, licensePlate, price);

@@ -5,7 +5,6 @@
       <configuration>
         <setting name="validation-enabled" value="true" />
         <datasource-mapping>
-          <factory-entry name="COLIBRI" value="139a442a-b15c-42d0-bba1-751758d8cc3d" />
           <factory-entry name="Entities" value="139a442a-b15c-42d0-bba1-751758d8cc3d" />
         </datasource-mapping>
         <naming-strategy-map />
