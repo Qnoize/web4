@@ -25,7 +25,6 @@ public class CustomerServlet extends HttpServlet {
         String brand = req.getParameter("brand");
         String model = req.getParameter("model");
         String licensePlate = req.getParameter("licensePlate");
-
         Car car = CarService.getInstance().getCarByParameters(brand, model, licensePlate);
         if (car.getId()!= null && car.getId() > 0) {
             DailyReportService.getInstance().addSoldCar(car);

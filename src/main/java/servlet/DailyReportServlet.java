@@ -17,13 +17,13 @@ public class DailyReportServlet extends HttpServlet {
         if (req.getPathInfo().contains("all")) {
             Gson gson = new Gson();
             String json = gson.toJson(DailyReportService.getInstance().getAllDailyReports());
-            resp.setStatus(200);
             resp.getWriter().write(json);
+            resp.setStatus(200);
         } else if (req.getPathInfo().contains("last")) {
             Gson gson = new Gson();
             String json = gson.toJson(DailyReportService.getInstance().getLastReport());
-            resp.setStatus(200);
             resp.getWriter().write(json);
+            resp.setStatus(200);
         }
     }
 

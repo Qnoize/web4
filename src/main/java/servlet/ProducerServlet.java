@@ -17,15 +17,11 @@ public class ProducerServlet extends HttpServlet {
         String brand = req.getParameter("brand");
         String model = req.getParameter("model");
         String licensePlate = req.getParameter("licensePlate");
-        String priceIn = req.getParameter("price");
-        if (!brand.equals("") && !model.equals("") && !licensePlate.equals("") && !priceIn.equals("")){
-            Long price = Long.parseLong(priceIn);
-            if(CarService.getInstance().getNumberBrand(brand) < 10) {
-                Car car = new Car(brand, model, licensePlate, price);
-                CarService.getInstance().addCar(car);
-                resp.setStatus(200);
-            }
+        Long price = Long.parseLong(req.getParameter("price"));
+        if(CarService.getInstance().getNumberBrand(brand) < 10) {
+            Car car = new Car(brand, model, licensePlate, price);
+            CarService.getInstance().addCar(car);
+            resp.setStatus(200);
         }
-
     }
 }

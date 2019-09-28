@@ -26,15 +26,15 @@ public class CarDao {
                 .list();
         session.getTransaction().commit();
         session.close();
-        return (Car) list.get(0);
+        return (Car)list.get(0);
     }
 
     public List<Car> getCarByBrand(String brand) {
         session.beginTransaction();
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaQuery<Car> criteriaQuery = criteriaBuilder.createQuery(Car.class);
-        Root<Car> carRoot = criteriaQuery.from(Car.class);
-        criteriaQuery.select(carRoot).where(criteriaBuilder.equal(carRoot.get("brand"),brand));
+        Root<Car> root = criteriaQuery.from(Car.class);
+        criteriaQuery.select(root).where(criteriaBuilder.equal(root.get("brand"),brand));
         Query<Car> query= session.createQuery(criteriaQuery);
         List<Car> list = query.getResultList();
         session.getTransaction().commit();
