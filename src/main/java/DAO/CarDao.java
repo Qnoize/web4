@@ -1,13 +1,15 @@
 package DAO;
 import model.Car;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
+
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 
 public class CarDao {
 
@@ -17,29 +19,18 @@ public class CarDao {
         this.session = session;
     }
 
-    public Car getCarByParameters(String brand, String model, String number) {
-        session.beginTransaction();
-        List list = session.createCriteria(Car.class)
-                .add(Restrictions.like("brand", brand))
-                .add(Restrictions.like("model", model))
-                .add(Restrictions.like("licensePlate", number))
-                .list();
-        session.getTransaction().commit();
-        session.close();
-        return (Car)list.get(0);
+    public Car getCarByParameters(String brand, String model, String licensePlate) {
+        return (Car) session.createQuery("select c from Car as c where c.brand = ?1 and c.model = ?2 and c.licensePlate = ?3")
+                .setParameter(1, brand)
+                .setParameter(2, model)
+                .setParameter(3,licensePlate)
+                .list().get(0);
     }
 
     public List<Car> getCarByBrand(String brand) {
-        session.beginTransaction();
-        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-        CriteriaQuery<Car> criteriaQuery = criteriaBuilder.createQuery(Car.class);
-        Root<Car> root = criteriaQuery.from(Car.class);
-        criteriaQuery.select(root).where(criteriaBuilder.equal(root.get("brand"),brand));
-        Query<Car> query= session.createQuery(criteriaQuery);
-        List<Car> list = query.getResultList();
-        session.getTransaction().commit();
-        session.close();
-        return list;
+        return session.createQuery("from Car as c where c.brand = ?1")
+                .setParameter(1, brand)
+                .list();
     }
 
     public void addCar(Car car) {
